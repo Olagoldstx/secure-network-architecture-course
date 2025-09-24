@@ -1,0 +1,8 @@
+{
+  "default": true,
+  "MD013": { "line_length": 120 },   // allow longer lines (default was 80)
+  "MD033": false,                    // allow inline HTML in Markdown
+  "MD041": false,                    // don’t require first line to be a heading
+  "MD036": false,                    // allow emphasis instead of strict bold rules
+  "MD001": false                     // allow multiple top-level headings (#)
+}
