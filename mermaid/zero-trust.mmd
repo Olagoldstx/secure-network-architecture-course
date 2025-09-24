@@ -1,0 +1,11 @@
+
+%% mermaid/zero-trust.mmd
+flowchart TD
+  Dev[Dev Account] -->|hub-route| Hub[Security Hub/Inspection VPC]
+  Prod[Prod Account] -->|hub-route| Hub
+  Hub -->|east-west policy| SegA[Segment A]
+  Hub --> SegB[Segment B]
+  SegA -.deny.-> SegB
+  SegB -.deny.-> SegA
+  IAM[CIEM/ABAC] --> SegA
+  IAM --> SegB

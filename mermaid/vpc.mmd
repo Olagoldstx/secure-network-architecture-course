@@ -1,0 +1,37 @@
+
+%% mermaid/vpc.mmd
+flowchart LR
+  subgraph Internet
+    Client1[User/Client]
+  end
+
+  subgraph VPC[10.0.0.0/16 - Prod VPC]
+    direction TB
+    subgraph PublicA[Public Subnet A]
+      ALB1[ALB]
+      NAT1[NAT GW]
+    end
+    subgraph PublicB[Public Subnet B]
+      ALB2[ALB]
+      NAT2[NAT GW]
+    end
+    subgraph PrivateA[Private Subnet A]
+      AppA[App ASG A]
+    end
+    subgraph PrivateB[Private Subnet B]
+      AppB[App ASG B]
+    end
+    VPCE1[S3 GW Endpoint]
+    VPCE2[Interface Endpoints: STS/Logs]
+  end
+
+  Client1 -->|HTTPS :443| ALB1
+  Client1 -->|HTTPS :443| ALB2
+  ALB1 --> AppA
+  ALB2 --> AppB
+  AppA -->|Egress| NAT1
+  AppB -->|Egress| NAT2
+  AppA --- VPCE1
+  AppB --- VPCE1
+  AppA --- VPCE2
+  AppB --- VPCE2
