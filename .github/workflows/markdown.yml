@@ -10,7 +10,11 @@ jobs:
       - name: Run markdownlint-cli2
         uses: DavidAnson/markdownlint-cli2-action@v16
         with:
+          # Lint only course docs; explicitly exclude templates, Terraform, and Mermaid
           globs: |
             **/*.md
+            !.github/ISSUE_TEMPLATE/**/*.md
+            !.github/pull_request_template.md
+            !labs/**/terraform/**/*.md
+            !**/*.mmd
           config: .markdownlint.json
-          ignore-path: .markdownlintignore

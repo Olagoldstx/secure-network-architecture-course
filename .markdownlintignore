@@ -1,6 +1,4 @@
-# ignore generated or code-heavy areas
-scripts/
+.github/ISSUE_TEMPLATE/
+.github/pull_request_template.md
 labs/**/terraform/
-**/*.tf
 **/*.mmd
-**/node_modules/
