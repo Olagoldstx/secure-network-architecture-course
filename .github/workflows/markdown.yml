@@ -1,12 +1,20 @@
-
 name: Lint Markdown
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
 jobs:
   mdlint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run a basic Markdown check
-        uses: docker://avtodev/markdown-lint:latest
+      - name: Run markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v16
         with:
-          args: ./
+          # Lint only course docs; explicitly exclude templates, Terraform, and Mermaid
+          globs: |
+            **/*.md
+            !.github/ISSUE_TEMPLATE/**/*.md
+            !.github/pull_request_template.md
+            !labs/**/terraform/**/*.md
+            !**/*.mmd
+          config: .markdownlint.json

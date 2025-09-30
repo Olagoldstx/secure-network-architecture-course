@@ -1,0 +1,11 @@
+graph TD
+  A[VPC-A: App Layer] -- TGW --> C[Transit Gateway]
+  B[VPC-B: Database Layer] -- TGW --> C
+  D[On-Prem VPN] -- TGW --> C
+
+  C -->|Allow App→DB| B
+  C -.->|Deny App→OnPrem| D
+
+  subgraph AWS Organization
+    E[SCP: Deny IAM User Creation]
+  end

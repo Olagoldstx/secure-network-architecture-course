@@ -1,0 +1,4 @@
+.github/ISSUE_TEMPLATE/
+.github/pull_request_template.md
+labs/**/terraform/
+**/*.mmd
