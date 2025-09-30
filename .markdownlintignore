@@ -1,0 +1,6 @@
+# ignore generated or code-heavy areas
+scripts/
+labs/**/terraform/
+**/*.tf
+**/*.mmd
+**/node_modules/
